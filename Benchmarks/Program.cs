@@ -13,33 +13,33 @@ using static Benchmarks.Constants;
 
 namespace Benchmarks
 {
-    [SimpleJob(100)]
+    [SimpleJob(20)]
     [RPlotExporter, RankColumn]
     public class Tests
     {
         [Benchmark]
         public async Task<HttpResponseMessage> ByteArray()
-            => await Server.GetAsync(ByteArrayRoute);
+            => await Server.GetAsync(ByteArrayRoute, HttpCompletionOption.ResponseContentRead);
 
         [Benchmark]
         public async Task<HttpResponseMessage> ByteArrayActionResult()
-            => await Server.GetAsync(ByteArrayActionResultRoute);
+            => await Server.GetAsync(ByteArrayActionResultRoute, HttpCompletionOption.ResponseContentRead);
 
         [Benchmark]
         public async Task<HttpResponseMessage> Csv()
-            => await Server.GetAsync(CsvRoute);
+            => await Server.GetAsync(CsvRoute, HttpCompletionOption.ResponseContentRead);
 
         [Benchmark]
         public async Task<HttpResponseMessage> JilJsonActionResult()
-            => await Server.GetAsync(JilJsonActionResultRoute);
+            => await Server.GetAsync(JilJsonActionResultRoute, HttpCompletionOption.ResponseContentRead);
 
         [Benchmark]
         public async Task<HttpResponseMessage> JilJsonFormatter()
-            => await Server.GetAsync(JilJsonFormatterRoute);
+            => await Server.GetAsync(JilJsonFormatterRoute, HttpCompletionOption.ResponseContentRead);
 
         [Benchmark]
         public async Task<HttpResponseMessage> JsonDefault()
-            => await Server.GetAsync(JsonDefaultRoute);
+            => await Server.GetAsync(JsonDefaultRoute, HttpCompletionOption.ResponseContentRead);
     }
 
     public class Program
@@ -51,21 +51,21 @@ namespace Benchmarks
             var resultSummary = GetResultSummary(dataTable).Split(Environment.NewLine);
             foreach (var line in resultSummary) Console.WriteLine(line);
             var readme = new StringBuilder()
-                .Append("# ASP.NET Core 2.1 API entity data-serialization benchmarks")
+                .Append("# ASP.NET Core 2.1 API entity data-serialization benchmarks with GZIP response compression")
                 .AppendLine()
                 .AppendLine("Run `./run.ps1` at the repository root to repeat the experiment")
                 .AppendLine()
                 .AppendLine("## Question")
                 .AppendLine()
-                .AppendLine("What is the most performant method of data serialization for resources served by ASP.NET Core 2.1 APIs?")
+                .AppendLine("What is the most performant method of data serialization for resources served by ASP.NET Core 2.1 APIs while using GZIP response compression?")
                 .AppendLine()
                 .AppendLine("## Variables")
                 .AppendLine()
                 .AppendLine("Three categories of serialization are tested:")
                 .AppendLine()
-                .AppendLine("- JSON")
-                .AppendLine("- CSV")
-                .AppendLine("- byte[]")
+                .AppendLine("- JSON (using GZIP response compression)")
+                .AppendLine("- CSV (using GZIP response compression)")
+                .AppendLine("- byte[] (not using GZIP response compression)")
                 .AppendLine()
                 .AppendLine("Jil IActionResult, Jil Formatter, and Newtonsoft (default) JSON performance is compared. byte[] object-result vs. IActionResult is also compared.")
                 .AppendLine()
