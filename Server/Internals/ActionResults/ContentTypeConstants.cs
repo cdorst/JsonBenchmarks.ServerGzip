@@ -2,7 +2,7 @@
 {
     internal static class ContentTypeConstants
     {
-        public const string CSV = "text/csv";
+        public const string CSV = "text/plain";
         public const string JSON = "application/json";
     }
 }
