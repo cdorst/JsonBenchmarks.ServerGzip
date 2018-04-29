@@ -12,6 +12,7 @@ namespace Benchmarks
         public const string JilJsonFormatterRoute = "/api/json-formatter";
         public const string JsonDefaultRoute = "/api/json-default";
 
-        public static readonly HttpClient Server = new HttpClient() { BaseAddress = new Uri("https://localhost:44301") };
+        public static readonly HttpClient Server = new HttpClient(httpClientHandler) { BaseAddress = new Uri("https://localhost:44301") };
+        private static readonly HttpClientHandler httpClientHandler = new HttpClientHandler() { AutomaticDecompression = System.Net.DecompressionMethods.GZip };
     }
 }
