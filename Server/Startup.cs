@@ -5,11 +5,13 @@ namespace Server
 {
     public class Startup
     {
-        public void ConfigureServices(IServiceCollection services) 
-            => services.AddMvcCore()
+        public void ConfigureServices(IServiceCollection services)
+            => services.AddResponseCompression()
+                .AddMvcCore()
                 .AddJsonFormatters();
 
-        public void Configure(IApplicationBuilder app) 
-            => app.UseMvc();
+        public void Configure(IApplicationBuilder app)
+            => app.UseResponseCompression()
+                .UseMvc();
     }
 }
