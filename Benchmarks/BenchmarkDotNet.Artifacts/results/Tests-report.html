@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>Tests</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.10.14, OS=Windows 10.0.16299.371 (1709/FallCreatorsUpdate/Redstone3)
+Intel Core i7-7700HQ CPU 2.80GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
+Frequency=2742186 Hz, Resolution=364.6726 ns, Timer=TSC
+.NET Core SDK=2.1.300-preview2-008533
+  [Host]     : .NET Core 2.1.0-preview2-26406-04 (CoreCLR 4.6.26406.07, CoreFX 4.6.26406.04), 64bit RyuJIT
+  Job-WJXHCJ : .NET Core 2.1.0-preview2-26406-04 (CoreCLR 4.6.26406.07, CoreFX 4.6.26406.04), 64bit RyuJIT
+</code></pre>
+<pre><code>LaunchCount=10  
+</code></pre>
+
+<table>
+<thead><tr><th>                Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Rank</th>
+</tr>
+</thead><tbody><tr><td>ByteArray</td><td>849.9 us</td><td>5.799 us</td><td>31.48 us</td><td>847.1 us</td><td>5</td>
+</tr><tr><td>ByteArrayActionResult</td><td>760.8 us</td><td>5.242 us</td><td>32.26 us</td><td>756.4 us</td><td>2</td>
+</tr><tr><td>Csv</td><td>756.3 us</td><td>5.002 us</td><td>27.53 us</td><td>754.7 us</td><td>1</td>
+</tr><tr><td>JilJsonActionResult</td><td>769.5 us</td><td>5.166 us</td><td>28.74 us</td><td>767.9 us</td><td>3</td>
+</tr><tr><td>JilJsonActionResultNoNulls</td><td>764.1 us</td><td>5.221 us</td><td>29.00 us</td><td>763.8 us</td><td>2</td>
+</tr><tr><td>JilJsonFormatter</td><td>840.3 us</td><td>5.486 us</td><td>27.95 us</td><td>836.8 us</td><td>4</td>
+</tr><tr><td>JilJsonFormatterActionResult</td><td>844.5 us</td><td>5.861 us</td><td>30.02 us</td><td>845.0 us</td><td>4</td>
+</tr><tr><td>JsonDefault</td><td>853.9 us</td><td>5.947 us</td><td>32.29 us</td><td>850.0 us</td><td>5</td>
+</tr><tr><td>JsonDefaultActionResult</td><td>855.8 us</td><td>5.260 us</td><td>28.20 us</td><td>854.3 us</td><td>5</td>
+</tr></tbody></table>
+</body>
+</html>

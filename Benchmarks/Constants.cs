@@ -8,11 +8,17 @@ namespace Benchmarks
         public const string ByteArrayRoute = "/api/bytes";
         public const string ByteArrayActionResultRoute = "/api/bytes-actionresult";
         public const string CsvRoute = "/api/csv";
+        public const string JilJsonActionResultNoNullsRoute = "/api/json-actionresult-no-nulls";
         public const string JilJsonActionResultRoute = "/api/json-actionresult";
+        public const string JilJsonFormatterActionResultRoute = "/api/json-formatter-actionresult";
         public const string JilJsonFormatterRoute = "/api/json-formatter";
+        public const string JsonDefaultActionResultRoute = "/api/json-default-actionresult";
         public const string JsonDefaultRoute = "/api/json-default";
 
-        public static readonly HttpClient Server = new HttpClient(httpClientHandler) { BaseAddress = new Uri("https://localhost:44301") };
-        private static readonly HttpClientHandler httpClientHandler = new HttpClientHandler() { AutomaticDecompression = System.Net.DecompressionMethods.GZip };
+        public static readonly HttpClient Server = new HttpClient(
+            new HttpClientHandler() { AutomaticDecompression = System.Net.DecompressionMethods.GZip })
+        {
+            BaseAddress = new Uri("https://localhost:44301")
+        };
     }
 }

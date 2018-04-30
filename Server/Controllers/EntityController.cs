@@ -25,15 +25,30 @@ namespace Server.Controllers
         public IActionResult JsonJilActionResult()
             => new JsonActionResult(Entity.Constant);
 
+        [HttpGet("json-actionresult-no-nulls")]
+        public IActionResult JsonJilActionResultWithoutNulls()
+            => new JsonWithoutNullsActionResult(Entity.Constant);
+
         [HttpGet("json-default")]
         [Produces(JSON)]
-        public Entity JsonDefault() 
+        public Entity JsonDefault()
+            => Entity.Constant;
+
+        [HttpGet("json-default-actionresult")]
+        [Produces(JSON)]
+        public ActionResult<Entity> JsonDefaultActionResult()
             => Entity.Constant;
 
         [HttpGet("json-formatter")]
         [JilFormatter]
         [Produces(JSON)]
-        public Entity JsonJilFormatter() 
+        public Entity JsonJilFormatter()
+            => Entity.Constant;
+
+        [HttpGet("json-formatter-actionresult")]
+        [JilFormatter]
+        [Produces(JSON)]
+        public ActionResult<Entity> JsonJilFormatterActionResult()
             => Entity.Constant;
     }
 }
